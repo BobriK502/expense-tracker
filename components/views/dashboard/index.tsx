@@ -12,13 +12,11 @@ export default function DashboardView() {
   return (
     <ScrollView>
         <Row height={20} gap={10} >
-          <Cell width={50}>
-            <Row height={50} gap={2} >
+          <Cell width={45} gap={2}>
               <InfoTile type={InfoTileTypes.Expenses} />
-            </Row>
-            <Row height={50} gap={2} >
+          </Cell>
+          <Cell width={45} gap={2}>
               <InfoTile type={InfoTileTypes.Expenses} />
-            </Row>
           </Cell>
         </Row>
     </ScrollView>

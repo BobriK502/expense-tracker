@@ -1,4 +1,4 @@
-import { InfoTileTypes } from '@/components/tiles/InfoTile';
+import { InfoTileTypes } from '@/components/tiles/InfoTile/IInfoTile';
 
 export default function useInfoTileData(type: InfoTileTypes) {
    return {
