@@ -7,7 +7,7 @@ import useInfoTileData from '@/components/tiles/InfoTile/hooks/useInfoTileData';
 import { IInfoTileProps } from '@/components/tiles/InfoTile/IInfoTile';
 
 export default function InfoTile(props: IInfoTileProps) {
-  const { value, colors } = useInfoTileData(props.type);
+  const { value, colors, title } = useInfoTileData(props.type);
 
   return (
       <LinearGradient
@@ -16,6 +16,7 @@ export default function InfoTile(props: IInfoTileProps) {
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
       >
+        <ThemedText type="subtitle" >{title}</ThemedText>
          <ThemedText>{value}</ThemedText>
       </LinearGradient>
   );

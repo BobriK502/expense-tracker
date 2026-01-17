@@ -1,28 +1,24 @@
-import { StyleSheet } from 'react-native';
+ import {
+  SafeAreaView,
+  SafeAreaProvider,
+} from 'react-native-safe-area-context';
 
+import Animated from 'react-native-reanimated';
+
+import { ActionButton } from '@/components/buttons/actionButton';
 import DashboardView from '@/components/views/dashboard/index'
 
 export default function HomeScreen() {
   return (
-    <DashboardView />
+    <SafeAreaProvider>
+      <SafeAreaView style={{ flex: 1 }}>
+        <Animated.ScrollView
+          showsVerticalScrollIndicator={false}
+        >
+         <DashboardView />
+        </Animated.ScrollView>
+      </SafeAreaView>
+      <ActionButton />
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});

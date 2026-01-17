@@ -1,8 +1,10 @@
 import { InfoTileTypes } from '@/components/tiles/InfoTile/IInfoTile';
+import { getText } from "@/services/localization";
 
 export default function useInfoTileData(type: InfoTileTypes) {
    return {
      value: 2000,
-     colors: ['#2A7B9B', '#57C785', '#EDDD53'],
+     colors: ['#dcdcdcff', '#ffffffff', '#ffffffff'],
+     title: getText("expences"),
    };
 }
