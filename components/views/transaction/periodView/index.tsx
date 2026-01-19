@@ -51,11 +51,6 @@ interface TransactionPeriodProps {
   isActive: boolean;
   offset: number;
   preloadData: boolean;
-  scrollY: {
-    value: number
-  };
-  onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
-  scrollPosition: number;
 }
 
 const TransactionsPeriodView = React.memo<TransactionPeriodProps>(
@@ -63,9 +58,6 @@ const TransactionsPeriodView = React.memo<TransactionPeriodProps>(
     baseDate,
     offset,
     isActive,
-    scrollY,
-    onScroll,
-    scrollPosition,
     preloadData,
   }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -131,38 +123,16 @@ const TransactionsPeriodView = React.memo<TransactionPeriodProps>(
     useEffect(() => {
       if (flatListRef.current && !isActive) {
         flatListRef.current.scrollTo({
-          y: scrollPosition,
+          y: HEADER_MAX_HEIGHT,
           animated: false,
         });
       }
-    }, [isActive, scrollPosition]);
-
-    const handleScroll = useCallback(
-      (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-        'worklet'
-        if (isActive) {
-          scrollY.value = event.nativeEvent.contentOffset.y;
-        }
-      },
-      [isActive, scrollY, onScroll]
-    );
-
-    const handleMomentumScrollEnd = useCallback(
-      (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-        'worklet'
-        if (isActive) {
-          onScroll(event);
-        }
-      },
-      [onScroll, isActive],
-    );
+    }, [isActive]);
 
     return (
       <View style={styles.container}>
         <Animated.ScrollView
           ref={flatListRef}
-          onScroll={handleScroll}
-          onMomentumScrollEnd={handleMomentumScrollEnd}
           scrollEventThrottle={1}
           contentContainerStyle={styles.content}
           showsVerticalScrollIndicator={false}

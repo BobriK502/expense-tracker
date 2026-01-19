@@ -41,46 +41,11 @@ const INITIAL_INDEX = Math.floor(TOTAL_MONTHS / 2);
 
 const TransactionsView = () => {
   const today = new Date();
-  const [scrollPosition, setScrollPosition] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(INITIAL_INDEX);
-  const scrollY = useSharedValue(0);
 
   const data = useMemo(() => {
     return Array.from({ length: TOTAL_MONTHS }, (_, i) => i);
   }, []);
-
-  const onScroll = useCallback(
-    (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-      setScrollPosition(
-        Math.min(
-          event.nativeEvent.contentOffset.y,
-          HEADER_MAX_HEIGHT - 100,
-        ),
-      );
-    },
-    [],
-  )
-
-  const headerStyle = useAnimatedStyle(() => {
-    const elevation = interpolate(
-      scrollY.value,
-      [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
-      [0, 2],
-      Extrapolation.CLAMP
-    );
-
-    const height = interpolate(
-      scrollY.value,
-      [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
-      [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
-      Extrapolation.CLAMP
-    );
-
-    return {
-      elevation,
-      height,
-    };
-  });
 
   const renderItem = useCallback(({ item: index }: { item: number }) => {
       const offset = INITIAL_INDEX - index;
@@ -90,12 +55,9 @@ const TransactionsView = () => {
       offset={offset}
       baseDate={today}
       isActive={currentIndex === index}
-      onScroll={onScroll}
-      scrollPosition={scrollPosition}
-      scrollY={scrollY}
       preloadData={shouldPreloadData(currentIndex,index)}
     />;
-  }, [currentIndex, scrollPosition]);
+  }, [currentIndex]);
 
   const keyExtractor = useCallback((index: number) => {
     const offset = INITIAL_INDEX - index;
@@ -141,7 +103,7 @@ const TransactionsView = () => {
 
   return (
     <View style={styles.container}>
-      <Animated.View style={[styles.header, headerStyle]}>
+      <Animated.View style={[styles.header, { height: HEADER_MAX_HEIGHT, elevation: 1 }]}>
         <View style={header.title}>
           <Text style={header.titleText}>История Транзакций</Text>
         </View>
@@ -179,7 +141,7 @@ const header = StyleSheet.create({
     right: 0,
     width: '100%',
     height: HEADER_MAX_HEIGHT,
-    backgroundColor: 'white',
+    backgroundColor: 'red',
     shadowColor: 'black',
     shadowOffset: { width: 10, height: 10 },
     shadowRadius: 4,

@@ -14,7 +14,7 @@ import {
 } from '@/helpers/transactions/amountFormatter';
 
 
-export default function DashboardView() {
+export default function DashboardView(): React.JSX.Element {
   const period = useMemo(() => {
     return new Date();
   }, [])
