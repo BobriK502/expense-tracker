@@ -47,7 +47,14 @@ function CategoryForm(): React.JSX.Element {
 
   const handleFormSubmit = handleSubmit(onSubmit);
   return (
-    <View className='bg-neutral-50 h-full w-full flex-col items-center' style={{ paddingTop: 150 }}>
+    <View style={{
+      paddingTop: 150,
+      backgroundColor: '#fafafa',
+      height: '100%',
+      width: '100%',
+      flexDirection: 'column',
+      alignItems: 'center'
+      }}>
       <Pressable
         onPress={onEditIcon}
         style={{ height: 120, width: 120, borderRadius: '50%', backgroundColor: editCategory.color, justifyContent: 'center', alignItems: 'center' }}

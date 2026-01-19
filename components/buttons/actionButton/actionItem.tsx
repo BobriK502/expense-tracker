@@ -54,7 +54,14 @@ function ActionItem({ isExpanded, index, icon, path, handleHide }) {
       style={[animatedStyles, styles.buttonContainer]}
       onPress={handlerPress}
     >
-      <Animated.View style={styles.button} className="shadow-xl shadow-black bg-slate-100" >
+      <Animated.View style={[
+        styles.button,
+        {
+          elevation: 2,
+          backgroundColor: '#f1f5f9',
+        }
+        ]}
+        >
         <MaterialIcons name={icon} size={20} />
       </Animated.View>
     </AnimatedPressable>

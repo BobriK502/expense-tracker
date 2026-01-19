@@ -5,17 +5,18 @@ import * as Haptics from 'expo-haptics';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 
 type BackButtonProps = {
-  className: string;
+  style: Record<string, any>;
 }
 
-function BackButton({ className }: BackButtonProps) {
+function BackButton({ style }: BackButtonProps) {
   const router = useRouter();
   const handlePress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     router.back()
   };
+
   return (
-    <Pressable onPress={handlePress} className={className}>
+    <Pressable onPress={handlePress} style={style}>
       <IconSymbol name={"chevron.left"} size={32} color={"black"} />
     </Pressable>
   );

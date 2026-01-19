@@ -3,8 +3,8 @@ import React from 'react';
 
 export default function(): React.JSX.Element {
    return (
-      <View className='bg-sky-200 h-full w-full justify-center items-center'>
-        <Text className='color-white font-semibold'>Budget</Text>
+      <View style={{ height: '100%', width: '100%' }}>
+        <Text>Budget</Text>
       </View>
     );
 }

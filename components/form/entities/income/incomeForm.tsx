@@ -71,7 +71,15 @@ function IncomeForm({
   const handleFormSubmit = handleSubmit(submitHandler);
 
   return (
-    <View className='bg-neutral-50 h-full w-full flex-col items-center'>
+    <View
+    style={{
+      backgroundColor: '#fafafa',
+      height: '100%',
+      width: '100%',
+      flexDirection: 'column',
+      alignItems: 'center'
+    }}
+    >
       <TransactionFormHeader
         name="date"
         label={getText('date_input_label')}

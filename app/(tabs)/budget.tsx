@@ -10,7 +10,7 @@ export default function BudgetPage() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1 }}>
-        <View className="bg-white">
+        <View style={{ backgroundColor: 'white' }}>
           <Text>Budget Page</Text>
           <View>
             <MaterialIcons name={"warning-amber"} size={18} color={'#fdba74'} />

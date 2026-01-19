@@ -19,13 +19,30 @@ export function ActionButton() {
   };
 
   return (
-    <SafeAreaView className='absolute w-16 flex-col z-20 bottom-6 right-4'>
+    <SafeAreaView
+      style={
+        {
+          position: 'absolute',
+          width: 64,                // w-16 → 16 * 4 = 64
+          flexDirection: 'column',   // flex-col
+          zIndex: 20,               // z-20
+          bottom: 24,               // bottom-6 → 6 * 4 = 24
+          right: 16,                // right-4 → 4 * 4 = 16
+        }
+      }
+    >
       <View style={styles.mainContainer}>
         <View style={styles.buttonContainer}>
           <AnimatedPressable
             onPress={handlePress}
-            className="bg-blue-200 flex items-center justify-center"
-            style={mainButtonStyles.button}>
+            style={[
+              mainButtonStyles.button,
+              {
+                backgroundColor: '#bfdbfe',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }
+              ]}>
             <Animated.View>
               <MaterialIcons name='add' size={22} color="white" />
             </Animated.View>

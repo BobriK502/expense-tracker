@@ -36,12 +36,17 @@ function ExpenceFormHeader({
   }, [field.value])
 
   return (
-    <View className='bg-rose-200 w-full relative' style={{ height: 200 }}>
+    <View style={{
+      height: 200,
+      backgroundColor: '#fecdd3',
+      position: 'relative',
+      width: '100%',
+      }}>
       <Pressable
         onPress={() => setIsOpen(true)}
-        className='absolute bottom-5 left-6'
+        style={{ position: 'absolute', bottom: 20, left: 24 }}
       >
-        <View className='flex-col'>
+        <View style={{ flexDirection: 'column' }}>
           <Animated.View
             style={[
               headerStyle,
@@ -52,7 +57,7 @@ function ExpenceFormHeader({
             ]}
           >
             <MaterialIcons name={"calendar-month"} size={32} />
-            <Text className='text-5xl font-light pt-1'>
+            <Text style={{ fontSize: 48, fontWeight: 300, paddingTop: 4 }}>
               {displayData.date}
             </Text>
           </Animated.View>
@@ -67,7 +72,7 @@ function ExpenceFormHeader({
             ]}
           >
             <MaterialIcons name={"alarm"} size={20} />
-            <Text className='font-extralight text-lg ml-2'>
+            <Text style={{ fontWeight: 200, fontSize: 18, marginLeft: 8}}>
               {displayData.time}
             </Text>
           </Animated.View>

@@ -1,7 +1,10 @@
 import { View } from 'react-native';
-import React, { useMemo, useState } from 'react';
-import { useSharedValue, interpolate, useAnimatedStyle } from 'react-native-reanimated';
-
+import React from 'react';
+import {
+  useSharedValue,
+  interpolate,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 
 import { createExpence } from '@/db/transactions/index';
@@ -15,11 +18,6 @@ export default function (): React.JSX.Element {
     const y = event.nativeEvent.contentOffset.y;
     scrollY.value = y;
   };
-
-  const a = useMemo(() => {
-    return scrollY.value;
-  }, [scrollY.value]);
-
 
   const headerStyle = useAnimatedStyle(() => {
     const opacity = interpolate(
@@ -52,9 +50,31 @@ export default function (): React.JSX.Element {
   }
 
   return (
-    <View className='h-full w-full bg-neutral-50'>
-      <View className='bg-rose-200 h-24 w-full flex-col justify-end absolute z-10 shadow-rose-100 shadow-xs'>
-        <BackButton className='absolute top-10 left-4 color-slate-200' />
+    <View style={{
+      height: '100%',
+      width: '100%',
+      backgroundColor: '#fafafa',
+    }}
+    >
+      <View style={{
+        backgroundColor: '#fecdd3',
+        height: 96,
+        width: '100%',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        position: 'absolute',
+        shadowColor: '#ffe4e6',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.12,
+        shadowRadius: 2,
+        elevation: 2,
+      }}>
+        <BackButton style={{
+          position: 'absolute',
+          top: 40,
+          left: 16,
+          color: '#cbd5e1',
+        }} />
       </View>
       <KeyboardAwareScrollView
         style={{ flex: 1 }}
@@ -62,7 +82,7 @@ export default function (): React.JSX.Element {
         onScroll={handleScroll}
         showsVerticalScrollIndicator={false}
       >
-        <View className='h-16' />
+        <View style={{ height: 64, }} />
         <ExpenceForm
           headerStyle={headerStyle}
           onSubmit={onSubmit}

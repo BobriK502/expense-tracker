@@ -1,11 +1,19 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
 
 import { SettingsCategoriesList } from '@/components/views/more/categories/index';
 
 export default function (): React.JSX.Element {
   return (
-    <View className='bg-sky-200 h-full w-full justify-center items-center'>
+    <View
+      style={{
+        backgroundColor: '#bae6fd',
+        height: '100%',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
+    >
       <SettingsCategoriesList />
     </View>
   );

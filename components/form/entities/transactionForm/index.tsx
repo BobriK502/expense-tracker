@@ -19,7 +19,7 @@ function TransactionForm({
         defaultValue={record.title}
         icon="text-format"
       />
-      <View className='flex-row'>
+      <View style={{ flexDirection: 'row' }}>
         <FormSumInput
           name="amount"
           label={getText('amount_input_label')}

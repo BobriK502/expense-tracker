@@ -29,7 +29,7 @@ function FormTextInput({
       marginTop: 20,
     }}>
       <Text className='ml-2 mb-2 text-lg font-lght color-black'>{label}</Text>
-      <View className='flex-row'>
+      <View style={{ flexDirection: 'row'}}>
         {Boolean(icon) && (
           <View style={{
             position: 'absolute',
