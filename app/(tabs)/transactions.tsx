@@ -84,7 +84,7 @@ export default function ExpencesPage() {
   return (
     <SafeAreaProvider>
       <TransactionsView data={data} />
-      <ActionButton />
+      {/* <ActionButton /> */}
     </SafeAreaProvider>
   );
 }

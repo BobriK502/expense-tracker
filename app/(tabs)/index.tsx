@@ -18,7 +18,7 @@ export default function HomeScreen() {
          <DashboardView />
         </Animated.ScrollView>
       </SafeAreaView>
-      <ActionButton />
+      {/* <ActionButton /> */}
     </SafeAreaProvider>
   );
 }

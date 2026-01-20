@@ -131,7 +131,7 @@ export const iconsMap: Record<
 };
 
 function MojiIcon({ width, height, iconId }) {
-  const Icon = Object.keys(iconsMap).includes(iconId.toString()) ? iconsMap[iconId] : iconsMap.default;
+  const Icon = Object.keys(iconsMap).includes((iconId || "").toString()) ? iconsMap[iconId] : iconsMap.default;
 
   return <Icon width={width} height={height} />
 }

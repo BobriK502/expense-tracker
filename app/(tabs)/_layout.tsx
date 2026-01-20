@@ -1,82 +1,28 @@
+// app/(tabs)/_layout.tsx
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
-
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
+import { View } from 'react-native';
 import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import CustomTabBar from '@/app/(tabs)/customTabs';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tabIconSelected,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          tabBarShowLabel: false,
-          tabBarIcon: ({ color, focused }) => (
-            <IconSymbol
-              size={28}
-              name="house.fill"
-              color={color}
-            />
-          ),
+    <>
+      <Tabs
+        screenOptions={{
+          headerShown: false,
+          tabBarStyle: { display: 'none' }, // ← скрываем стандартный tabBar
         }}
-      />
-      <Tabs.Screen
-        name="transactions"
-        options={{
-          tabBarShowLabel: false,
-          tabBarIcon: ({ color, focused }) => (
-            <IconSymbol
-              size={28}
-              name="arrow.counterclockwise"
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="budget"
-        options={{
-          tabBarShowLabel: false,
-          tabBarIcon: ({ color, focused }) => (
-            <IconSymbol
-              size={28}
-              name="creditcard.fill"
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="more"
-        options={{
-          tabBarShowLabel: false,
-          tabBarIcon: ({ color, focused }) => (
-            <IconSymbol
-              size={28}
-              name="circle.grid.3x3"
-              color={color}
-            />
-          ),
-        }}
-      />
-    </Tabs>
+      >
+        <Tabs.Screen name="index" options={{ title: 'Главная' }} />
+        <Tabs.Screen name="transactions" options={{ title: 'Транзакции' }} />
+        <Tabs.Screen name="budget" options={{ title: 'Бюджет' }} />
+        <Tabs.Screen name="more" options={{ title: 'Ещё' }} />
+      </Tabs>
+
+      {/* Кастомный фон и панель */}
+      {/* <TabBarBackground /> */}
+      <CustomTabBar />
+    </>
   );
 }
