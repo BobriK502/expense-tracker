@@ -120,7 +120,7 @@ const TransactionsPeriodView = React.memo<TransactionPeriodProps>(
     useEffect(() => {
       if (flatListRef.current && !isActive) {
         flatListRef.current.scrollTo({
-          y: HEADER_MAX_HEIGHT,
+          y: 0,
           animated: false,
         });
       }
@@ -181,7 +181,6 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH,
   },
   content: {
-    paddingTop: HEADER_MAX_HEIGHT,
     paddingHorizontal: 5,
     paddingBottom: 32,
     minHeight: SCREEN_HEIGHT,

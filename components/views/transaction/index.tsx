@@ -182,10 +182,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   header: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
     zIndex: 10,
     backgroundColor: 'white',
     display: 'flex',
