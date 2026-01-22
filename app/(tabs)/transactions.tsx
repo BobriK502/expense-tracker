@@ -4,7 +4,6 @@ import {
 import { useState, useCallback } from 'react';
 import { useFocusEffect } from 'expo-router';
 
-import { ActionButton } from '@/components/buttons/actionButton';
 import { TransactionsView } from '@/components/views/transaction';
 import { useTransactionStore } from '@/states/transactions.state';
 import { getTransactionsDataByMonth } from '@/dataRepositories/transactions';
@@ -82,9 +81,8 @@ export default function ExpencesPage() {
   useFocusEffect(loadData);
 
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider style={{ flex: 1, marginBottom: 50 }}>
       <TransactionsView data={data} />
-      {/* <ActionButton /> */}
     </SafeAreaProvider>
   );
 }

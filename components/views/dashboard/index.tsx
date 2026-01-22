@@ -34,7 +34,6 @@ export default function DashboardView(): React.JSX.Element {
     })
   }, []);
 
-  console.log(expences, income)
   const totalExpences = expences.reduce((acc, e) => (acc + e.total), 0)
   const totalIncome = income.reduce((acc, i) => (acc + i.total), 0)
 

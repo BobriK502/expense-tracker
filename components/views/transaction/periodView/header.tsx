@@ -25,7 +25,7 @@ const PeriodHeader = React.memo<PeriodHeaderProps>(
     total,
   }) {
     return (
-      <View style={{ width: '100%', height: 30, backgroundColor: '#EEF6FF', borderRadius: 10, elevation: 0.8, marginTop: 8, flexDirection: 'row', opacity: 0.8 }}>
+      <View style={{ width: '100%', height: 30, backgroundColor: '#f5f5f5', borderRadius: 10, marginVertical: 10, flexDirection: 'row' }}>
         <View style={{ width: '33%', alignItems: 'center', justifyContent: 'center' }}>
           <TransactionAmount
             transactionTypeId={TRANSACTION_TYPE_IDS.INCOME}

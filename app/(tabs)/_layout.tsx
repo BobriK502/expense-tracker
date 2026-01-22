@@ -1,17 +1,16 @@
-// app/(tabs)/_layout.tsx
-import { Tabs } from 'expo-router';
+import {
+  Tabs,
+} from 'expo-router';
 import React from 'react';
-import { View } from 'react-native';
-import TabBarBackground from '@/components/ui/TabBarBackground';
 import CustomTabBar from '@/app/(tabs)/customTabs';
 
-export default function TabLayout() {
+export default function TabLayout(): React.JSX.Element {
   return (
     <>
       <Tabs
         screenOptions={{
           headerShown: false,
-          tabBarStyle: { display: 'none' }, // ← скрываем стандартный tabBar
+          tabBarStyle: { display: 'none' },
         }}
       >
         <Tabs.Screen name="index" options={{ title: 'Главная' }} />
@@ -19,9 +18,6 @@ export default function TabLayout() {
         <Tabs.Screen name="budget" options={{ title: 'Бюджет' }} />
         <Tabs.Screen name="more" options={{ title: 'Ещё' }} />
       </Tabs>
-
-      {/* Кастомный фон и панель */}
-      {/* <TabBarBackground /> */}
       <CustomTabBar />
     </>
   );

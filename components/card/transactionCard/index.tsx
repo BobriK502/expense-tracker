@@ -1,10 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-
 import { useBottomSheet } from '@/states/bottomSheet.state';
 import { GenericCard } from '@/components/card/generic/index';
-
 import { useTransactionStore } from '@/states/transactions.state';
 import {
   TransactionAmount,
@@ -21,7 +19,7 @@ import {
 
 function TransactionCard({
   data,
-}) {
+}): React.JSX.Element {
   const setIsOpen = useBottomSheet((state) => state.setIsOpen);
   const setActiveBshView = useBottomSheet((state) => state.setActiveView);
   const setActiveTransaction = useTransactionStore(
@@ -57,7 +55,6 @@ function TransactionCard({
           />
           <Text style={styles.descriptionDate}>{formatTransactionTime(data.transactionDate)}</Text>
         </View>
-
       </View>
     </GenericCard >
   )
@@ -71,8 +68,8 @@ const styles = StyleSheet.create({
   },
   categoryTitle: {
     color: 'gray',
-    fontSize: 11,
-    fontWeight: 500,
+    fontSize: 12,
+    fontWeight: 400,
   },
   desctiptionContainer: {
     paddingLeft: 14,
@@ -80,7 +77,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   desctiptionTitle: {
-    fontSize: 15,
+    fontSize: 16,
     color: '#262626',
     paddingBottom: 3,
   },

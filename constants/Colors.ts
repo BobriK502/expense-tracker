@@ -10,8 +10,9 @@ export const Colors = {
     background: 'white',
     tint: tintColorLight,
     icon: '#687076',
-    tabIconDefault: '#687076',
+    tabIconDefault: '#94a3b8',
     tabIconSelected: '#000',
+    btnPrimaryColor: '#fff085',
     transaction: {
       [TRANSACTION_TYPE_IDS.EXPENCE]: '#C10008',
       [TRANSACTION_TYPE_IDS.INCOME]: 'green',
@@ -27,8 +28,9 @@ export const Colors = {
     background: '#151718',
     tint: tintColorDark,
     icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
+    tabIconDefault: '#94a3b8',
     tabIconSelected: '#fff',
+    btnPrimaryColor: '#fff085',
     transaction: {
       [TRANSACTION_TYPE_IDS.EXPENCE]: '#C10008',
       [TRANSACTION_TYPE_IDS.INCOME]: 'green',

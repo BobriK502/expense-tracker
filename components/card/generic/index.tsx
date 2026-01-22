@@ -1,6 +1,13 @@
-import React, { useState } from 'react';
-import { View } from 'react-native';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import React, {
+  useState,
+} from 'react';
+import {
+  View,
+} from 'react-native';
+import {
+  Gesture,
+  GestureDetector,
+} from 'react-native-gesture-handler';
 
 import { cardStyles } from '@/components/card/generic/styles';
 import { runOnJS } from 'react-native-reanimated';

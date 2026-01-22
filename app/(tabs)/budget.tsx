@@ -9,7 +9,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 export default function BudgetPage() {
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1, marginBottom: 50 }}>
         <View style={{ backgroundColor: 'white' }}>
           <Text>Budget Page</Text>
           <View>

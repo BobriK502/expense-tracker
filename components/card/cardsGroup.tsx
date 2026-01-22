@@ -1,4 +1,8 @@
-import { View, Text, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+} from 'react-native';
 import React from 'react';
 
 import {
@@ -36,14 +40,13 @@ const styles = StyleSheet.create({
     display: 'flex',
     marginTop: 15,
     width: '100%',
+    paddingHorizontal: 5,
   },
   titile: {
-    paddingLeft: 14,
     paddingBottom: 5,
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: 400,
     color: 'gray',
-    
   },
   summaryContainer: {
     flex: 1,
@@ -51,14 +54,16 @@ const styles = StyleSheet.create({
   },
   summary: {
     color: 'gray',
-    fontSize: 12,
+    fontSize: 14,
     marginRight: 5,
   },
   titleContainer: {
     marginLeft: 3,
     flexDirection: 'row',
     borderBottomWidth: 0.2,
-    borderColor: 'lightgray'
+    borderColor: 'lightgray',
+    paddingHorizontal: 10,
+
   },
   innerContainer: {
     marginTop: 5,

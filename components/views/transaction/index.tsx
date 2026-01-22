@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useRef } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import {
   View,
   Text,
@@ -6,8 +6,6 @@ import {
   StyleSheet,
   StatusBar,
   Pressable,
-  NativeSyntheticEvent,
-  NativeScrollEvent,
 } from 'react-native';
 import Animated, {
   useSharedValue,
@@ -23,7 +21,6 @@ import {
 } from '@/components/views/transaction/periodView';
 import {
   HEADER_MAX_HEIGHT,
-  HEADER_MIN_HEIGHT,
 } from '@/components/views/transaction/config.ui';
 import {
   getDateByOffset
@@ -48,14 +45,14 @@ const TransactionsView = () => {
   }, []);
 
   const renderItem = useCallback(({ item: index }: { item: number }) => {
-      const offset = INITIAL_INDEX - index;
+    const offset = INITIAL_INDEX - index;
 
     return <TransactionsPeriodView
       key={index}
       offset={offset}
       baseDate={today}
       isActive={currentIndex === index}
-      preloadData={shouldPreloadData(currentIndex,index)}
+      preloadData={shouldPreloadData(currentIndex, index)}
     />;
   }, [currentIndex]);
 
@@ -105,14 +102,19 @@ const TransactionsView = () => {
     <View style={styles.container}>
       <Animated.View style={[styles.header, { height: HEADER_MAX_HEIGHT, elevation: 1 }]}>
         <View style={header.title}>
-          <Text style={header.titleText}>История Транзакций</Text>
+          <Text style={header.titleText}>История</Text>
+          <Pressable style={{ marginHorizontal: 5, padding: 8 }}>
+            <FontAwesome6 name={"magnifying-glass"} size={18} />
+          </Pressable>
+          <Pressable style={{ marginHorizontal: 5, padding: 8 }}>
+            <FontAwesome6 name={"filter"} size={18} />
+          </Pressable>
         </View>
-        <View style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', alignItems: 'center', backgroundColor: 'white', paddingBottom: 10, paddingTop: 5, borderBottomWidth: 1, borderBottomColor: '#EEF6FF' }}>
-          <Text style={{ fontSize: 15 }}>{currentPeriod.toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' })}</Text>
+        <View style={header.periodIndicator}>
+          <Text style={{ fontSize: 15 }}>
+            {currentPeriod.toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' })}
+            </Text>
         </View>
-        <Pressable style={{ position: 'absolute', top: 65, right: 30 }}>
-          <FontAwesome6 name={"filter"} size={18} />
-        </Pressable>
       </Animated.View>
       <Animated.FlatList
         data={data}
@@ -141,21 +143,36 @@ const header = StyleSheet.create({
     right: 0,
     width: '100%',
     height: HEADER_MAX_HEIGHT,
-    backgroundColor: 'red',
     shadowColor: 'black',
     shadowOffset: { width: 10, height: 10 },
     shadowRadius: 4,
     shadowOpacity: 1,
   },
   title: {
-    position: 'absolute',
-    bottom: 55,
-    left: 24,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    height: 40,
+    width: '100%',
+    paddingRight: 20,
+    marginBottom: 10,
+  },
+  periodIndicator: {
+    width: '100%',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    paddingBottom: 10,
+    paddingTop: 5,
+    borderBottomWidth: 1,
+    borderBottomColor: '#EEF6FF',
   },
   titleText: {
+    flex: 1,
+    marginLeft: 20,
     color: 'black',
-    fontSize: 20,
-    fontWeight: 500,
+    fontSize: 18,
+    fontWeight: 400,
   }
 })
 
@@ -163,7 +180,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: StatusBar.currentHeight || 0,
   },
   header: {
     position: 'absolute',
@@ -172,6 +188,9 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 10,
     backgroundColor: 'white',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-end'
   },
   flatList: {
     flex: 1,

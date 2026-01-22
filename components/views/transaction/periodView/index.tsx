@@ -1,6 +1,5 @@
 import React, {
   useState,
-  useCallback,
   useRef,
   useEffect,
   useMemo,
@@ -10,8 +9,6 @@ import {
   Text,
   Dimensions,
   StyleSheet,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
 } from 'react-native';
 import Animated, {
 } from 'react-native-reanimated';
@@ -184,10 +181,10 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH,
   },
   content: {
-    paddingTop: HEADER_MAX_HEIGHT - 20,
+    paddingTop: HEADER_MAX_HEIGHT,
     paddingHorizontal: 5,
     paddingBottom: 32,
-    minHeight: SCREEN_HEIGHT + HEADER_MAX_HEIGHT - 240,
+    minHeight: SCREEN_HEIGHT,
   },
 });
 

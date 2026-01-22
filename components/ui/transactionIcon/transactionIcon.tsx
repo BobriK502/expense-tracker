@@ -57,8 +57,8 @@ const sizes = StyleSheet.create({
 
 const iconSize = StyleSheet.create({
   default: {
-    height: 45,
-    width: 45,
+    height: 50,
+    width: 50,
   },
   small: {
     height: 38,

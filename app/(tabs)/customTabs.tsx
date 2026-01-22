@@ -1,12 +1,28 @@
-// components/CustomTabBar.tsx
 import React from 'react';
-import { View, Pressable, Platform } from 'react-native';
-import { useRouter, usePathname } from 'expo-router';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import { FontAwesome6 } from '@expo/vector-icons';
-import { useBottomSheet } from '@/states/bottomSheet.state';
+import {
+  View,
+  Pressable,
+  Platform,
+} from 'react-native';
+import {
+  useRouter,
+  usePathname,
+} from 'expo-router';
+import {
+  Colors,
+} from '@/constants/Colors';
+import {
+  useColorScheme,
+} from '@/hooks/useColorScheme';
+import {
+  IconSymbol,
+} from '@/components/ui/IconSymbol';
+import {
+  FontAwesome6,
+} from '@expo/vector-icons';
+import {
+  useBottomSheet,
+} from '@/states/bottomSheet.state';
 
 const TABS = [
   { path: '/', icon: 'house.fill'},
@@ -16,14 +32,19 @@ const TABS = [
   { path: '/more', icon: 'circle.grid.3x3' },
 ];
 
-export default function CustomTabBar() {
+export default function CustomTabBar(): React.JSX.Element {
   const router = useRouter();
   const pathname = usePathname();
   const colorScheme = useColorScheme();
-  const activeColor = Colors[colorScheme ?? 'light'].tabIconSelected;
-  const inactiveColor = '#94a3b8';
-  const setActiveBshView = useBottomSheet((state) => state.setActiveView);
-  const setIsBshOpen = useBottomSheet((state) => state.setIsOpen);
+  const color = Colors[colorScheme ?? 'light'];
+  const activeColor = color.tabIconSelected;
+  const tabIconDefault = color.tabIconDefault;
+  const setActiveBshView = useBottomSheet(
+    (state) => state.setActiveView,
+  );
+  const setIsBshOpen = useBottomSheet(
+    (state) => state.setIsOpen,
+  );
 
   const handlePress = () => {
     setActiveBshView('newEntity');
@@ -62,7 +83,7 @@ export default function CustomTabBar() {
               borderRadius: '50%',
               justifyContent: 'center',
               alignItems: 'center',
-              backgroundColor: '#fff085',
+              backgroundColor: color.btnPrimaryColor,
               elevation: 0.2,
             }}
             onPress={handlePress}
@@ -84,7 +105,7 @@ export default function CustomTabBar() {
           <IconSymbol
             size={28}
             name={tab.icon}
-            color={isActive(tab.path) ? activeColor : inactiveColor}
+              color={isActive(tab.path) ? activeColor : tabIconDefault}
           />
         </Pressable>
         );
