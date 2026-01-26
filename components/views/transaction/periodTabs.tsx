@@ -9,12 +9,9 @@ import {
   Pressable,
   Text,
   View,
-  Dimensions,
   StyleSheet,
 } from 'react-native';
 import { FontAwesome6 } from '@expo/vector-icons';
-
-const width = Dimensions.get('screen').width;
 
 function PeriodTabs({
   periodData,
