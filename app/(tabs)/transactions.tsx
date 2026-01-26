@@ -34,7 +34,6 @@ export function formatDateHeader(dateString: string): string {
 export function groupTransactionsByDate(transactions: any[]) {
   return transactions.reduce((groups, transaction) => {
     const date = new Date(transaction.transactionDate);
-
     const dateKey = date.toISOString().split('T')[0];
 
     if (!groups[dateKey]) {
@@ -81,7 +80,7 @@ export default function ExpencesPage() {
   useFocusEffect(loadData);
 
   return (
-    <SafeAreaProvider style={{ flex: 1, marginBottom: 50 }}>
+    <SafeAreaProvider style={{ flex: 1 }}>
       <TransactionsView data={data} />
     </SafeAreaProvider>
   );

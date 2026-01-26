@@ -10,14 +10,17 @@ import {
   Dimensions,
   StyleSheet,
 } from 'react-native';
-import Animated, {
-} from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 
 import {
   getTransactionsDataByMonth,
 } from '@/dataRepositories/transactions';
-import { TransactionCard } from '@/components/card/transactionCard/index';
-import { CardGroup } from '@/components/card/cardsGroup';
+import {
+  TransactionCard,
+} from '@/components/card/transactionCard/index';
+import {
+  CardGroup,
+} from '@/components/card/cardsGroup';
 import {
   formatPeriodData,
 } from '@/helpers/transactions/history/formatPeriodData';
@@ -25,17 +28,11 @@ import {
   useTransactionStore,
 } from '@/states/transactions.state';
 import {
-  HEADER_MAX_HEIGHT,
-} from '@/components/views/transaction/config.ui';
-import {
   PeriodHeader,
 } from '@/components/views/transaction/periodView/header';
 import {
   PeriodFooter,
 } from '@/components/views/transaction/periodView/footer';
-import {
-  getDateByOffset
-} from '@/components/views/transaction/helpers';
 
 const {
   width: SCREEN_WIDTH,
@@ -44,16 +41,14 @@ const {
 
 
 interface TransactionPeriodProps {
-  baseDate: Date;
   isActive: boolean;
-  offset: number;
+  period: Date;
   preloadData: boolean;
 }
 
 const TransactionsPeriodView = React.memo<TransactionPeriodProps>(
   ({
-    baseDate,
-    offset,
+    period,
     isActive,
     preloadData,
   }) => {
@@ -65,10 +60,6 @@ const TransactionsPeriodView = React.memo<TransactionPeriodProps>(
       lastActionTimestamp,
       removePeriodData,
     } = useTransactionStore();
-
-    const period = useMemo(() => {
-      return getDateByOffset(baseDate, offset);
-    }, []);
 
     const {
       data,
@@ -84,7 +75,9 @@ const TransactionsPeriodView = React.memo<TransactionPeriodProps>(
         total: 0,
         count: 0,
       };
+
       const periodData = getPeriodData(period)
+
       return {
         data: formatPeriodData(periodData.transactions, period),
         income: periodData.income,

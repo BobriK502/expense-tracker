@@ -60,24 +60,22 @@ export default function CustomTabBar(): React.JSX.Element {
       style={{
         position: 'absolute',
         bottom: 0,
-        left: 0,
         right: 0,
-        height: 55,
+        height: 50,
         borderTopWidth: 0.2,
         borderColor: 'lightgray',
-        paddingBottom: Platform.OS === 'ios' ? 20 : 10,
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
         zIndex: 20,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        width: '100%',
       }}
     >
       {TABS.map((tab) => {
         if (tab.type === 'button') {
           return <Pressable
             style={{
-              marginTop: 5,
               height: 40,
               width: 40,
               borderRadius: '50%',

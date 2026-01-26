@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -14,7 +14,6 @@ import Animated, {
   Extrapolation,
   interpolateColor,
 } from 'react-native-reanimated';
-import { FontAwesome6 } from '@expo/vector-icons';
 
 import {
   TransactionsPeriodView,
@@ -25,6 +24,13 @@ import {
 import {
   getDateByOffset
 } from '@/components/views/transaction/helpers';
+import {
+  Colors,
+} from '@/constants/Colors';
+import {
+  useColorScheme,
+} from '@/hooks/useColorScheme';
+import { PeriodTabs } from './periodTabs';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -33,34 +39,47 @@ function shouldPreloadData(activeIndex: number, index: number) {
   return index >= activeIndex - 2 || index <= activeIndex + 2;
 }
 
-const TOTAL_MONTHS = 50;
+const TOTAL_MONTHS = 18;
 const INITIAL_INDEX = Math.floor(TOTAL_MONTHS / 2);
 
 const TransactionsView = () => {
   const today = new Date();
+  const activeTimeout = useRef<NodeJS.Timeout | null> (null);
+  const isScrolling = useRef<boolean>(false);
   const [currentIndex, setCurrentIndex] = useState(INITIAL_INDEX);
+  const [selectedTabIndex, setSelectedTabIndex] = useState<number | null>(null);
+  const colorScheme = useColorScheme();
+  const color = Colors[colorScheme ?? 'light'];
+  const periodViewRef = useRef<Animated.FlatList<Date> | null>(null);
 
   const data = useMemo(() => {
-    return Array.from({ length: TOTAL_MONTHS }, (_, i) => i);
+    return Array
+      .from({ length: TOTAL_MONTHS }, (_, i) => i)
+      .map((i) => {
+        const offset = INITIAL_INDEX - i;
+        return getDateByOffset(today, offset)
+      });
   }, []);
 
-  const renderItem = useCallback(({ item: index }: { item: number }) => {
-    const offset = INITIAL_INDEX - index;
-
+  const renderItem = useCallback(({ item, index }: { item: Date, index: number }) => {
     return <TransactionsPeriodView
       key={index}
-      offset={offset}
-      baseDate={today}
+      period={item}
       isActive={currentIndex === index}
       preloadData={shouldPreloadData(currentIndex, index)}
     />;
   }, [currentIndex]);
 
-  const keyExtractor = useCallback((index: number) => {
-    const offset = INITIAL_INDEX - index;
-    const period = getDateByOffset(today, offset);
+  const keyExtractor = useCallback((period: Date) => {
     return `${period}`;
   }, []);
+
+  const handleSelectPeriod = useCallback((ind: number) => {
+    if (periodViewRef.current) {
+      setSelectedTabIndex(ind);
+      periodViewRef.current.scrollToIndex({ index: ind, animated: true })
+    }
+  }, [])
 
   const getItemLayout = useCallback(
     (_: unknown, index: number) => ({
@@ -77,13 +96,17 @@ const TransactionsView = () => {
       changed: unknown;
     }) => {
       if (viewableItems.length > 0) {
-        const visibleIndex = viewableItems[0].index;
-        if (Math.abs(visibleIndex - currentIndex) >= 1) {
-          setCurrentIndex(visibleIndex);
-        }
+        const itemInd = viewableItems[0].index;
+        if (!selectedTabIndex || itemInd === selectedTabIndex)
+          new Promise((resolve) => {
+            setCurrentIndex(itemInd);
+            resolve({});
+          }).then(() => {
+            setSelectedTabIndex(null);
+          })
       }
     },
-    [currentIndex]
+    [selectedTabIndex]
   );
 
   const viewabilityConfig = useMemo(
@@ -93,30 +116,20 @@ const TransactionsView = () => {
     []
   );
 
-  const currentPeriod = getDateByOffset(
-    today,
-    INITIAL_INDEX - currentIndex,
-  );
-
   return (
     <View style={styles.container}>
-      <Animated.View style={[styles.header, { height: HEADER_MAX_HEIGHT, elevation: 1 }]}>
+      <Animated.View style={[styles.header, { height: HEADER_MAX_HEIGHT, backgroundColor: 'white' }]}>
         <View style={header.title}>
           <Text style={header.titleText}>История</Text>
-          <Pressable style={{ marginHorizontal: 5, padding: 8 }}>
-            <FontAwesome6 name={"magnifying-glass"} size={18} />
-          </Pressable>
-          <Pressable style={{ marginHorizontal: 5, padding: 8 }}>
-            <FontAwesome6 name={"filter"} size={18} />
-          </Pressable>
         </View>
-        <View style={header.periodIndicator}>
-          <Text style={{ fontSize: 15 }}>
-            {currentPeriod.toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' })}
-            </Text>
-        </View>
+        <PeriodTabs
+          periodData={data}
+          currentIndex={selectedTabIndex || currentIndex}
+          onSelectPeriod={handleSelectPeriod}
+        />
       </Animated.View>
       <Animated.FlatList
+        ref={periodViewRef}
         data={data}
         horizontal
         pagingEnabled
@@ -130,7 +143,12 @@ const TransactionsView = () => {
         style={styles.flatList}
         decelerationRate="fast"
         removeClippedSubviews={false}
-        windowSize={10}
+        onScrollToIndexFailed={(info) => {
+          const wait = new Promise(resolve => setTimeout(resolve, 100));
+          wait.then(() => {
+            periodViewRef.current?.scrollToIndex({ index: info.index, animated: true });
+          });
+        }}
       />
     </View>
   );
@@ -156,7 +174,7 @@ const header = StyleSheet.create({
     height: 40,
     width: '100%',
     paddingRight: 20,
-    marginBottom: 10,
+    marginBottom: 5,
   },
   periodIndicator: {
     width: '100%',
@@ -165,13 +183,12 @@ const header = StyleSheet.create({
     paddingBottom: 10,
     paddingTop: 5,
     borderBottomWidth: 1,
-    borderBottomColor: '#EEF6FF',
   },
   titleText: {
     flex: 1,
-    marginLeft: 20,
+    marginLeft: 28,
     color: 'black',
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 400,
   }
 })
@@ -186,15 +203,17 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    paddingBottom: 20,
+    elevation: 1,
   },
   flatList: {
     flex: 1,
     width: SCREEN_WIDTH,
   },
   headerTitle: {
-    fontSize: 18,
-    fontWeight: '600',
+    fontSize: 22,
+    fontWeight: 600,
   },
 });
 

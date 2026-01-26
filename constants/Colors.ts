@@ -12,7 +12,8 @@ export const Colors = {
     icon: '#687076',
     tabIconDefault: '#94a3b8',
     tabIconSelected: '#000',
-    btnPrimaryColor: '#fff085',
+    btnPrimaryColor: '#F4F4F5',
+    accentColor: '#fff085',
     transaction: {
       [TRANSACTION_TYPE_IDS.EXPENCE]: '#C10008',
       [TRANSACTION_TYPE_IDS.INCOME]: 'green',
@@ -31,6 +32,7 @@ export const Colors = {
     tabIconDefault: '#94a3b8',
     tabIconSelected: '#fff',
     btnPrimaryColor: '#fff085',
+    accentColor: '#fff085',
     transaction: {
       [TRANSACTION_TYPE_IDS.EXPENCE]: '#C10008',
       [TRANSACTION_TYPE_IDS.INCOME]: 'green',
