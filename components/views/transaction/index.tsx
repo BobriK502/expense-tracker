@@ -1,19 +1,16 @@
-import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
+import React, {
+  useState,
+  useCallback,
+  useMemo,
+  useRef,
+} from 'react';
 import {
   View,
   Text,
   Dimensions,
   StyleSheet,
-  StatusBar,
-  Pressable,
 } from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  interpolate,
-  Extrapolation,
-  interpolateColor,
-} from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 
 import {
   TransactionsPeriodView,
@@ -30,7 +27,9 @@ import {
 import {
   useColorScheme,
 } from '@/hooks/useColorScheme';
-import { PeriodTabs } from './periodTabs';
+import {
+  PeriodTabs,
+} from '@/components/views/transaction/periodTabs';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
