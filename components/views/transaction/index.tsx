@@ -44,8 +44,6 @@ const INITIAL_INDEX = Math.floor(TOTAL_MONTHS / 2);
 
 const TransactionsView = () => {
   const today = new Date();
-  const activeTimeout = useRef<NodeJS.Timeout | null> (null);
-  const isScrolling = useRef<boolean>(false);
   const [currentIndex, setCurrentIndex] = useState(INITIAL_INDEX);
   const [selectedTabIndex, setSelectedTabIndex] = useState<number | null>(null);
   const colorScheme = useColorScheme();
