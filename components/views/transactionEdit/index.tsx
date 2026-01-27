@@ -8,34 +8,41 @@ import {
   TransactionForm,
 } from '@/components/form/entities/transaction';
 import {
-  createTransaction,
+  updateTransaction,
 } from '@/dataRepositories/transactions';
 import {
-  TRANSACTION_TYPE_IDS,
-} from '@/constants/config.entities';
+  useTransactionStore,
+} from '@/states/transactions.state';
 
-function TransactionAdd({}): React.JSX.Element {
+function TransactionEdit({ }): React.JSX.Element | null {
+  const {
+    selectedTransaction,
+  } = useTransactionStore();
+
   const handleSubmit = (data) => {
-    createTransaction({
+    updateTransaction({
+      id: selectedTransaction!.id,
       transactionTypeId: data.transactionTypeId,
       title: data.title,
-      amount: data.amount,
+      amount: data.amount * 100,
       notice: '',
       transactionDate: data.date instanceof Date ? data.date.toISOString() : data.date,
       categoryId: data.categoryId,
     });
   }
 
+  if (!selectedTransaction) return null;
+
   return (
     <View style={TransactionAddStyles.container}>
       <TransactionForm
         onSubmit={handleSubmit}
         defaultValues={{
-          amount: '',
-          date: new Date(),
-          categoryId: null,
-          title: '',
-          transactionTypeId: TRANSACTION_TYPE_IDS.EXPENCE,
+          amount: selectedTransaction.amount.toString(),
+          date: new Date(selectedTransaction.transactionDate),
+          categoryId: selectedTransaction.categoryId,
+          title: selectedTransaction.title,
+          transactionTypeId: selectedTransaction.transactionTypeId,
         }}
       />
     </View>
@@ -50,4 +57,4 @@ const TransactionAddStyles = StyleSheet.create({
   },
 });
 
-export { TransactionAdd };
+export { TransactionEdit };

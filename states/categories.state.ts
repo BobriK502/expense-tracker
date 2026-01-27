@@ -8,6 +8,12 @@ const defaultCategory = {
   iconId: 'default'
 }
 
+type CategoriesState = {
+  selectedCategoryId: number | null;
+  categories: Array<any>;
+  editCategory: any;
+}
+
 const useCategoriesState = create(
   combine(
     {
@@ -15,7 +21,7 @@ const useCategoriesState = create(
       categories: [],
       editCategory: defaultCategory,
     },
-    (set, get) => {
+    (set) => {
       return {
         setCategories: (newCategories: Array<never> | ((curr: Array<never>) => Array<never>)) => {
           set((state) => {
@@ -27,7 +33,7 @@ const useCategoriesState = create(
             }
           })
         },
-        setSelectedCategoryId: (newSelectedCategoryID: number | ((curr: number) => number)) => {
+        setSelectedCategoryId: (newSelectedCategoryID: (number | null) | ((curr: number | null) => (number | null))) => {
          // @ts-ignore
           set((state) => ({
             selectedCategoryId:

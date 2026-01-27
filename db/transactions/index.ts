@@ -24,8 +24,7 @@ export async function createExpence({
   }
 }
 
-export async function updateTransaction(transaction) {
-  console.log('transaction', transaction)
+export async function update(transaction: Transaction) {
   const updateObj = Object.keys(transaction)
     .reduce((acc, key) => {
       if (key !== 'id') {
@@ -42,12 +41,8 @@ export async function updateTransaction(transaction) {
     WHERE id = ?
   `;
 
-  console.log(sql, updateObj.values);
   try {
-    const res = db.runAsync('SELECT * FROM transactions');
-    console.log(res, 'res')
     await db.runAsync(sql, [...updateObj.values, transaction.id]);
-
   } catch(e) {
     console.log(e);
     throw new Error(JSON.stringify(e));
@@ -58,18 +53,17 @@ export async function create({
   transactionTypeId,
   title,
   amount,
-  notice,
-  date,
+  notice = '',
+  transactionDate,
   categoryId,
-}) {
-  const dateString = date instanceof Date ? date.toISOString() : date;
+}: Omit<Transaction, 'id'>) {
   const db = openDatabaseSync(dbName);
 
   try {
     await db.runAsync(`
     INSERT INTO transactions (transactionTypeId, amount, transactionDate, title, notice, categoryId, currencyCode)
     VALUES (?, ?, ?, ?, ?, ?, ?)
-  `, [transactionTypeId, amount * 100, dateString, title, notice, categoryId, 933]);
+  `, [transactionTypeId, amount * 100, transactionDate, title, notice, categoryId, 933]);
   } catch (e) {
     console.log(e);
   }

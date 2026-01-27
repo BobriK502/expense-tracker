@@ -61,6 +61,7 @@ function TransactionForm({
   const {
     selectedCategoryId,
     setCategories,
+    setSelectedCategoryId,
   } = useCategoriesState();
   const {
     renewLastActionTimestamp,
@@ -69,7 +70,7 @@ function TransactionForm({
   const [
     transactionType,
     setTransactionType,
-  ] = useState(TRANSACTION_TYPE_IDS.EXPENCE);
+  ] = useState(defaultValues.transactionTypeId);
 
   const { control, handleSubmit } = useForm({
     defaultValues: {
@@ -122,9 +123,16 @@ function TransactionForm({
     const fetchData = async () => {
       const categoriesRaw = await selectCategoriesByType(transactionType);
       setCategories(categoriesRaw as Array<never>);
+      setSelectedCategoryId(null);
     }
     fetchData();
   }, [transactionType]);
+
+  useEffect(() => {
+    return () => {
+      setSelectedCategoryId(null);
+    }
+  }, []);
 
   return (
     <View style={TransactionFormStyles.container}>

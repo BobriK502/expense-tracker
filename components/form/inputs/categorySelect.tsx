@@ -4,17 +4,15 @@ import {
   Text,
   FlatList,
 } from 'react-native';
-import { useMemo } from 'react';
+import {
+  useMemo,
+  useEffect,
+} from 'react';
 
-import { useCategoriesState } from '@/states/categories.state';
+import {
+  useCategoriesState,
+} from '@/states/categories.state';
 import { MojiIcon } from '@/components/ui/MojiIcon';
-
-const defaultCategory = {
-  color: 'gray',
-  title: 'Choose category',
-  id: null,
-  iconId: 'default'
-}
 
 interface CategorySelectProps {
   categoryId: number | null;
@@ -28,16 +26,30 @@ function CategorySelect({
   const categories = useCategoriesState((state) => state.categories);
   const selectedCategory = useMemo(() => {
     return selectedCategoryId || categoryId;
-  }, [selectedCategoryId, categoryId])
+  }, [selectedCategoryId, categoryId]);
+
+  useEffect(() => {
+    if (!selectedCategoryId && categories.length > 0) {
+      const selectedCat = (
+        categories
+        .find((cat) => cat.id === Number(categoryId))
+      ) ? categoryId
+        : categories[0].id;
+
+      setSelectedCategoryId(selectedCat);
+    }
+  }, [selectedCategoryId, categories]);
 
   return (
-    <View style={{ height: 40, width: '100%', marginBottom: 5, overflow: 'visible' }}>
+    <View style={{ height: 40, width: '100%', marginBottom: 5 }}>
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
         data={categories}
-        renderItem={({ item }) => {
-          const isSelected = item.id === selectedCategory;
+        renderItem={({ item, index }) => {
+          const isSelected = selectedCategory  !== null
+            ? +item.id === +selectedCategory
+            : index === 0;
 
           return (
             <Pressable

@@ -18,9 +18,7 @@ import {
 } from 'react-native-gesture-handler';
 
 import { useBottomSheet } from '@/states/bottomSheet.state';
-import { CategoriesBottomSheet } from './categories';
 import { IconSelectBottomSheet } from './icons/index';
-import { NewEntityBottomSheet } from './newEntity/index';
 import { TransactionBottomSheet } from './transaction/index';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
@@ -80,16 +78,8 @@ function BottomSheet({ duration = 250 }): React.JSX.Element | null {
       return <IconSelectBottomSheet />
     }
 
-    if (view === 'newEntity') {
-      return <NewEntityBottomSheet />
-    }
-
     if (view === 'transaction') {
       return <TransactionBottomSheet />
-    }
-
-    if (view === 'categories') {
-      return <CategoriesBottomSheet />;
     }
 
     return null;

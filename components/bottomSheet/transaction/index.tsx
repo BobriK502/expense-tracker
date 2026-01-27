@@ -36,11 +36,7 @@ function TransactionBottomSheet() {
   const router = useRouter();
 
   const handleEdit = () => {
-    const trType = activeTransaction.transactionTypeId === TRANSACTION_TYPE_IDS.EXPENCE
-      ? 'expence'
-      : 'income';
-
-      router.push(`/entities/edit/${trType}`);
+      router.push(`/entities/edit/transaction`);
       setIsOpen(false);
       setActiveView('');
   }

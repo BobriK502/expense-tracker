@@ -12,23 +12,14 @@ export default function (): React.JSX.Element {
         }}
       />
       <Stack.Screen
-        name="expence"
+        name="transaction"
         options={{
           headerShown: false,
-          statusBarBackgroundColor: '#fecdd3',
+          statusBarBackgroundColor: 'white',
           statusBarAnimation: "fade",
           statusBarStyle: "dark",
         }}
       />
-      <Stack.Screen
-              name="income"
-              options={{
-                headerShown: false,
-                statusBarBackgroundColor: '#d9f99d',
-                statusBarAnimation: "fade",
-                statusBarStyle: "dark",
-              }}
-            />
     </Stack>
   );
 }
