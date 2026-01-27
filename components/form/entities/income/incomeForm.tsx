@@ -7,7 +7,6 @@ import { TransactionFormHeader } from '@/components/form/entities/transactionFor
 import { getText } from '@/services/localization';
 import { TransparentButton } from '@/components/buttons/transparent';
 import { TransactionForm } from '@/components/form/entities/transactionForm/index'
-import { createIncome } from '@/db/transactions/index';
 import { CategorySelect } from '@/components/form/inputs/categorySelect';
 import { useCategoriesState } from '@/states/categories.state';
 import {

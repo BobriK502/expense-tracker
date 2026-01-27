@@ -5,24 +5,10 @@ export default function (): React.JSX.Element {
   return (
     <Stack>
       <Stack.Screen
-        name="budget"
+        name="transaction"
         options={{
           headerShown: false,
-          statusBarBackgroundColor: '#bae6fd'
-        }}
-      />
-      <Stack.Screen
-        name="income"
-        options={{
-          headerShown: false,
-          statusBarBackgroundColor: '#d9f99d'
-        }}
-      />
-      <Stack.Screen
-        name="expence"
-        options={{
-          headerShown: false,
-          statusBarBackgroundColor: '#fecdd3',
+          statusBarBackgroundColor: 'white',
           statusBarAnimation: "fade",
           statusBarStyle: "dark",
         }}

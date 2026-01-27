@@ -2,6 +2,7 @@ import {
   getTransactionsByMonth,
   deleteRecordById,
   getTransacrionsByType,
+  create,
 } from '@/db/transactions/index';
 import {
   TRANSACTION_TYPE_IDS,
@@ -71,8 +72,17 @@ async function getMonthIncomeByCategories(period: Date) {
   return data.map((tr) => ({ ...tr, total: formatAmount(tr.total)}));
 }
 
+async function createTransaction(data: any) {
+  try {
+    await create(data);
+  } catch(e) {
+    console.log(e);
+  }
+}
+
 export {
   getTransactionsDataByMonth,
   getMonthExpencesByCategories,
   getMonthIncomeByCategories,
+  createTransaction,
 }

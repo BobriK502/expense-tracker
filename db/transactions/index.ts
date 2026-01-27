@@ -54,7 +54,8 @@ export async function updateTransaction(transaction) {
   }
 }
 
-export async function createIncome({
+export async function create({
+  transactionTypeId,
   title,
   amount,
   notice,
@@ -68,7 +69,7 @@ export async function createIncome({
     await db.runAsync(`
     INSERT INTO transactions (transactionTypeId, amount, transactionDate, title, notice, categoryId, currencyCode)
     VALUES (?, ?, ?, ?, ?, ?, ?)
-  `, [2, amount * 100, dateString, title, notice, categoryId, 933]);
+  `, [transactionTypeId, amount * 100, dateString, title, notice, categoryId, 933]);
   } catch (e) {
     console.log(e);
   }

@@ -39,16 +39,9 @@ export default function CustomTabBar(): React.JSX.Element {
   const color = Colors[colorScheme ?? 'light'];
   const activeColor = color.tabIconSelected;
   const tabIconDefault = color.tabIconDefault;
-  const setActiveBshView = useBottomSheet(
-    (state) => state.setActiveView,
-  );
-  const setIsBshOpen = useBottomSheet(
-    (state) => state.setIsOpen,
-  );
 
   const handlePress = () => {
-    setActiveBshView('newEntity');
-    setIsBshOpen(true);
+    router.push('/entities/new/transaction');
   };
 
   const isActive = (path: string) => {
