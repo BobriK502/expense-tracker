@@ -45,7 +45,6 @@ function TransactionTypeSelect({
         return (
           <Pressable
             onPress={() => {
-              // console.log(option.id)
               onChange(option.id);
             }}
             style={TransactionTypeSelectStyles.option}

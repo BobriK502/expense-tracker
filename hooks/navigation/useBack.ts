@@ -8,7 +8,6 @@ export function useBack(handler: () => void): void {
 
   useEffect(() => {
     const hardwareBack = (): boolean | null | undefined => {
-      console.log(backPressCount)
       if (backPressCount.current === 1) {
         return false;
       }

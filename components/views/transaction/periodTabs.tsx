@@ -11,7 +11,7 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
-import { FontAwesome6 } from '@expo/vector-icons';
+import { Feather, FontAwesome6 } from '@expo/vector-icons';
 
 function PeriodTabs({
   periodData,
@@ -53,7 +53,7 @@ function PeriodTabs({
         >
           <View style={{ flexDirection: 'row', height: '100%', alignItems: 'center', flex: 1}}>
             <View style={{ paddingHorizontal: 15, borderRightWidth: 1, borderColor: 'white', height: '100%', justifyContent: 'center' }}>
-              <FontAwesome6 name={"calendar"} size={14} color="white" />
+              <Feather name={"calendar"} size={14} color="white" />
             </View>
             <Text style={{
               color: 'white',
@@ -68,10 +68,10 @@ function PeriodTabs({
         </Pressable>
         <View style={{ flexDirection: 'row' }}>
           <Pressable style={{ marginHorizontal: 5, padding: 8 }}>
-            <FontAwesome6 name={"magnifying-glass"} size={18} />
+            <Feather name={"search"} size={20} color="black" />
           </Pressable>
           <Pressable style={{ marginHorizontal: 5, padding: 8 }}>
-            <FontAwesome6 name={"filter"} size={18} />
+            <Feather name={"filter"} size={20} color="black" />
           </Pressable>
         </View>
       </View>
@@ -114,7 +114,10 @@ function PeriodTabs({
                     borderRadius: 10,
                   }}
                   onPress={() => {
-                    onSelectPeriod(index);
+                    if (!isSelected) {
+                      onSelectPeriod(index);
+
+                    }
                     setIsExpanded(false);
                   }}
                 >

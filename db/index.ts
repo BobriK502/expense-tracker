@@ -150,7 +150,6 @@ export async function migrateDbIfNeeded(db: SQLiteDatabase) {
   let { user_version: currentDbVersion } = await db.getFirstAsync<{ user_version: number }>(
     'PRAGMA user_version'
   ) ?? {};
-  console.log(currentDbVersion)
   if (currentDbVersion && currentDbVersion >= DATABASE_VERSION) {
     return;
   }
@@ -167,7 +166,6 @@ export async function migrateDbIfNeeded(db: SQLiteDatabase) {
     await migartionV4();
     currentDbVersion = 4;
   } else if (currentDbVersion === 4) {
-    console.log('here')
     await migrationV5(db);
     currentDbVersion = 5;
   }

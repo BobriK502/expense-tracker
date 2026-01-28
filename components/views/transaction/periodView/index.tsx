@@ -6,7 +6,6 @@ import React, {
 } from 'react';
 import {
   View,
-  Text,
   Dimensions,
   StyleSheet,
 } from 'react-native';
@@ -33,11 +32,15 @@ import {
 import {
   PeriodFooter,
 } from '@/components/views/transaction/periodView/footer';
+import {
+  EmptyPeriod,
+} from '@/components/views/transaction/periodView/emptyPeriod/emptyPreoid';
+import { HEADER_MAX_HEIGHT } from '../config.ui';
 
 const {
   width: SCREEN_WIDTH,
   height: SCREEN_HEIGHT,
-} = Dimensions.get('screen');
+} = Dimensions.get('window');
 
 
 interface TransactionPeriodProps {
@@ -137,9 +140,7 @@ const TransactionsPeriodView = React.memo<TransactionPeriodProps>(
           {data.map((item) => {
             if (item.isEmpty) {
               return (
-                <View key={item.lablel}>
-                  <Text>{item.label}</Text>
-                </View>
+                <EmptyPeriod label={item.label} />
               )
             }
 
@@ -176,7 +177,7 @@ const styles = StyleSheet.create({
   content: {
     paddingHorizontal: 5,
     paddingBottom: 32,
-    minHeight: SCREEN_HEIGHT,
+    minHeight: SCREEN_HEIGHT - 50 - HEADER_MAX_HEIGHT,
   },
 });
 
