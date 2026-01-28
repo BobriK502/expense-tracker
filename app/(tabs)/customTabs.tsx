@@ -2,7 +2,6 @@ import React from 'react';
 import {
   View,
   Pressable,
-  Platform,
 } from 'react-native';
 import {
   useRouter,
@@ -15,21 +14,15 @@ import {
   useColorScheme,
 } from '@/hooks/useColorScheme';
 import {
-  IconSymbol,
-} from '@/components/ui/IconSymbol';
-import {
-  FontAwesome6,
+  Feather,
 } from '@expo/vector-icons';
-import {
-  useBottomSheet,
-} from '@/states/bottomSheet.state';
 
 const TABS = [
-  { path: '/', icon: 'house.fill'},
-  { path: '/transactions', icon: 'arrow.counterclockwise' },
+  { path: '/', icon: 'home'},
+  { path: '/transactions', icon: 'pocket' },
   { type: 'button' },
-  { path: '/budget', icon: 'creditcard.fill' },
-  { path: '/more', icon: 'circle.grid.3x3' },
+  { path: '/budget', icon: 'pie-chart' },
+  { path: '/more', icon: 'grid' },
 ];
 
 export default function CustomTabBar(): React.JSX.Element {
@@ -79,7 +72,7 @@ export default function CustomTabBar(): React.JSX.Element {
             }}
             onPress={handlePress}
           >
-            <FontAwesome6 name="plus" size={14} color='block' />
+            <Feather name="plus" size={18} color='black' />
           </Pressable>
         }
         return (
@@ -93,10 +86,10 @@ export default function CustomTabBar(): React.JSX.Element {
             width: 70,
           }}
         >
-          <IconSymbol
-            size={28}
+          <Feather
+            size={22}
             name={tab.icon}
-              color={isActive(tab.path) ? activeColor : tabIconDefault}
+            color={isActive(tab.path) ? activeColor : tabIconDefault}
           />
         </Pressable>
         );

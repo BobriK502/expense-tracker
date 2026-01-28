@@ -2,7 +2,7 @@ import {
   formatDateHeader,
 } from '@/helpers/date/transactions/formatHeader';
 import {
-  groupByDate
+  groupByDate,
 } from '@/helpers/transactions/history/groupByDate';
 
 export function formatPeriodData(transactions: any, period: any) {
