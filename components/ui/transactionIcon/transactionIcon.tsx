@@ -10,7 +10,7 @@ import {
 const getIconSize = (size = 'default') => {
   switch (size) {
     case 'small':
-      return 25
+      return 22
     default:
       return 32;
   }
@@ -50,8 +50,8 @@ const sizes = StyleSheet.create({
     width: 50,
   },
   small: {
-    height: 40,
-    width: 40,
+    height: 30,
+    width: 30,
   }
 });
 
@@ -61,8 +61,8 @@ const iconSize = StyleSheet.create({
     width: 50,
   },
   small: {
-    height: 38,
-    width: 38,
+    height: 30,
+    width: 30,
     elevation: 1
   }
 })

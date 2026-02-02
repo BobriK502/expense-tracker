@@ -44,6 +44,7 @@ function NumPad({
                     value={button.value}
                     size={button.size}
                     onPress={onAddSymbol}
+                    customStyle={{}}
                   >
                     <Text style={{ fontSize: 24, fontWeight: 400  }}>{button.value}</Text>
                   </NumButton>
