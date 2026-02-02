@@ -33,7 +33,7 @@ function CategoryBar({
   const fontFamily = Platform.select({ ios: "Helvetica", default: "serif" });
   const fontStyle = {
     fontFamily,
-    fontSize: 14,
+    fontSize: 13,
   };
   const font = matchFont(fontStyle);
 
@@ -107,6 +107,7 @@ function CategoryBar({
         y={ty + fontStyle.fontSize}
         text={label}
         font={font}
+        color={'gray'}
       />
       <Circle cx={cx} cy={cy} r={r1} color={hexWithOpacity(color, 0.2)} />
       <Circle cx={cx} cy={cy} r={r1 - 3} color={color} />

@@ -40,10 +40,15 @@ function TransactionCard({
       backgroundColor="#ffff"
     >
       <View style={styles.inner}>
-        <TransactionIcon iconId={data.iconId} color={data.color} />
-        <View style={styles.desctiptionContainer}>
-          <Text style={styles.desctiptionTitle}>{data.title}</Text>
-          <Text style={[styles.categoryTitle]}>{data.categoryTitle}</Text>
+        <View style={{
+          flexDirection: 'row',
+          flex: 2,
+        }}>
+          <TransactionIcon iconId={data.iconId} color={data.color} />
+          <View style={styles.desctiptionContainer}>
+            <Text style={[styles.categoryTitle]} numberOfLines={1}>{data.categoryTitle}</Text>
+            <Text style={styles.desctiptionTitle} numberOfLines={1}>{data.title}</Text>
+          </View>
         </View>
         <View
           style={styles.amountContainer}
@@ -64,7 +69,8 @@ const styles = StyleSheet.create({
   inner: {
     display: 'flex',
     flexDirection: 'row',
-    position: 'relative',
+    justifyContent: 'space-between',
+    width: '100%',
   },
   categoryTitle: {
     color: 'gray',
@@ -75,9 +81,10 @@ const styles = StyleSheet.create({
     paddingLeft: 14,
     height: 50,
     justifyContent: 'center',
+    // backgroundColor: 'red',
   },
   desctiptionTitle: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#262626',
     paddingBottom: 3,
   },
@@ -88,12 +95,10 @@ const styles = StyleSheet.create({
     color: 'gray'
   },
   amountContainer: {
-    position: 'absolute',
-    top: 0,
-    right: 5,
     height: 50,
     justifyContent: 'center',
     alignItems: 'flex-end',
+    flex: 2,
   },
   card: {
     display: 'flex',
