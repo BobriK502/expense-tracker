@@ -42,19 +42,7 @@ function CategoryBar({
     const path = Skia.Path.Make();
     
     path.addRRect({
-      rect: { x: basicOffset + (index * (size + offset)), y: 50 + (300 - height * progress.value), width: size, height: (height * progress.value) },
-      rx: r,
-      ry: r,
-    })
-
-    return path;
-  });
-
-  const rrct2 = useDerivedValue(() => {
-    const path = Skia.Path.Make();
-
-    path.addRRect({
-      rect: { x: basicOffset + 3 + (index * (size + offset)), y: 53 + (300 - height), width: size - 6, height: 25 },
+      rect: { x: basicOffset + (index * (size + offset)), y: 50 + (250 - height * progress.value), width: size, height: (height * progress.value) },
       rx: r,
       ry: r,
     })
@@ -90,11 +78,11 @@ function CategoryBar({
     `);
 
   const cx = 30 + basicOffset + (index * (size + offset));
-  const cy = 370;
+  const cy = 320;
   const r1 = 15;
 
   const tx = basicOffset + 10 + (index * (size + offset));
-  const ty = 325;
+  const ty = 275;
 
   return (
     <Group>
@@ -111,7 +99,7 @@ function CategoryBar({
       />
       <Circle cx={cx} cy={cy} r={r1} color={hexWithOpacity(color, 0.2)} />
       <Circle cx={cx} cy={cy} r={r1 - 3} color={color} />
-      <ImageSVG svg={image} x={21 + basicOffset + (index * (size + offset))} y={360} width={18} height={18} />
+      <ImageSVG svg={image} x={21 + basicOffset + (index * (size + offset))} y={310} width={18} height={18} />
     </Group>   
   )
 }

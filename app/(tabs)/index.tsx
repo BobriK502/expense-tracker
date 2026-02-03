@@ -11,9 +11,7 @@ export default function HomeScreen() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1, marginBottom: 50 }}>
-        <Animated.ScrollView
-          showsVerticalScrollIndicator={false}
-        >
+        <Animated.ScrollView showsVerticalScrollIndicator={false}>
          <DashboardView />
         </Animated.ScrollView>
       </SafeAreaView>

@@ -103,14 +103,12 @@ function CategoryChart({
   }, [xOffset]);
 
   return (
-    <View
-      style={CategoryChartStyle.container}
-    >
+    <View style={CategoryChartStyle.container}>
       <GestureDetector gesture={composed}>
-        <Canvas style={{ flex: 1, height: 400, backgroundColor: hexWithOpacity('#F4F4F5', 0.4) }}>
+        <Canvas style={{ flex: 1, height: 320, backgroundColor: 'white' }}>
           <Group transform={transform}>
             {data.map((item, index) => {
-              const height = Math.round((item.total / maxVal) * 268) + 32;
+              const height = Math.round((item.total / maxVal) * 250) + 32;
               return (
                 <Group>
                   <CategoryBar
@@ -132,7 +130,7 @@ function CategoryChart({
 
 const CategoryChartStyle = StyleSheet.create({
   container: {
-    height: 400,
+    height: 350,
   }
 })
 
