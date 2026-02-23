@@ -43,4 +43,11 @@ export const Colors = {
       [entityTypes.budget]: '#bae6fd',
     }
   },
+  unthemed: {
+    wealthEntitites: {
+      expence: '#C10008',
+      income: '#008000',
+      balance: '#dbdbdb',
+    }
+  }
 };

@@ -2,6 +2,7 @@ import {
   getTransactionsByMonth,
   deleteRecordById,
   getTransacrionsByType,
+  getAllTransactionsAmount,
   create,
   update,
 } from '@/db/transactions/index';
@@ -16,13 +17,15 @@ import {
 } from '@/helpers/number/transactions/formatAmount';
 import type { Transaction } from '@/types/entities/transaction';
 
+const DEFAULT_LIMIT_PER_PERIOD = 9999;
+
 export async function deleteTransactionById(id: number) {
   await deleteRecordById(id);
 }
 
-async function getTransactionsDataByMonth(period: Date) {
+async function getTransactionsDataByMonth(period: Date, limit: number = DEFAULT_LIMIT_PER_PERIOD) {
   try {
-    const transactions = await getTransactionsByMonth(period);
+    const transactions = await getTransactionsByMonth(period, limit);
     const {
       income,
       expences,
@@ -89,10 +92,34 @@ async function updateTransaction(data: Transaction) {
   }
 }
 
+async function getTransactionsAmount() {
+  try {
+    const res = await getAllTransactionsAmount();
+    const amountData = res ? res[0] : {};
+    return amountData
+      ? Object
+         .keys(amountData)
+         .reduce(
+           (acc, key) => {
+             acc[key] = key !== 'count'
+               ? formatAmount(amountData[key])
+               : amountData[key];
+             return acc;
+           },
+           {},
+         )
+      : {};
+  } catch (e) {
+    console.log(e);
+    return {}
+  }
+}
+
 export {
   getTransactionsDataByMonth,
   getMonthExpencesByCategories,
   getMonthIncomeByCategories,
   createTransaction,
   updateTransaction,
+  getTransactionsAmount,
 }

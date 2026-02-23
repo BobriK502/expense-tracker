@@ -30,6 +30,11 @@ export const ru = {
   "desctiption_input_label": "Описание",
   "description_placeholder": "Дайте краткое описание",
   "title_placeholder": "Новая запись",
-    "amount_input_label": "Cумма",
-  "amount_input_placeholder": "Введите сумму"
+  "amount_input_label": "Cумма",
+  "amount_input_placeholder": "Введите сумму",
+  "wealth_widget_info_no_transactions": "Нет залогированных транзакций",
+  "wealth_widget_info_transactions_count": "Колличество транзакций за всё время - {{transactionCount}}",
+  "wealth_widget_expence_label": "Затраты",
+  "wealth_widget_income_label": "Доход",
+  "wealth_widget_balance_label": "Текущий баланс",
 };

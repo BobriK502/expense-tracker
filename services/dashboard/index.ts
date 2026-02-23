@@ -1,41 +1,50 @@
-import { GrowMap } from '@/constants/common';
+import {
+  getTransactionsAmount,
+} from '@/dataRepositories/transactions';
+import {
+  getText,
+} from '@/services/localization/index';
+import {
+  Colors,
+} from '@/constants/Colors';
 
-export function getChartData() {
-  return [
-    {
-      value: 47,
-      color: '#009FFF',
-      gradientCenterColor: '#006DFF',
-      focused: true,
-      label: 'Категория 1',
-      totalValue: 2500,
-      categoryGrowStatus: GrowMap.Down,
-    },
-    {
-      value: 40,
-      color: '#93FCF8',
-      label: 'Категория 2',
-      gradientCenterColor: '#54dad5ff',
-      totalValue: 1800,
-      categoryGrowStatus: GrowMap.Up,
-    },
-    {
-      value: 16,
-      color: '#BDB2FA',
-      label: 'Категория 3',
-      gradientCenterColor: '#7462d9ff',
-      totalValue: 600,
-      categoryGrowStatus: GrowMap.Down,
-    },
-    {
-      value: 3,
-      color: '#FFA5BA',
-      label: 'Категория 4',
-      gradientCenterColor: '#eb6080ff',
-      totalValue: 70,
-      categoryGrowStatus: GrowMap.Up,
-    },
-  ]
+async function prepareWealthWidgetData() {
+  const amountData = await getTransactionsAmount();
+
+  if (!amountData.count) {
+    return {
+      dataSet: [],
+      info: getText('wealth_widget_info_no_transactions'),
+      isEmpty: true,
+    };
+  }
+
+  return {
+    dataSet: [
+      {
+        name: getText('wealth_widget_expence_label'),
+        value: amountData.expencesAmount,
+        color: Colors.unthemed.wealthEntitites.expence,
+      },
+      {
+        name: getText('wealth_widget_income_label'),
+        value: amountData.incomeAmount,
+        color: Colors.unthemed.wealthEntitites.income,
+      },
+      {
+        name: getText('wealth_widget_balance_label'),
+        value: amountData.incomeAmount - amountData.expencesAmount,
+        color: Colors.unthemed.wealthEntitites.balance,
+      },
+    ],
+    info: getText(
+      'wealth_widget_info_transactions_count',
+      {
+        transactionCount: amountData.count,
+      },
+    ),
+    isEmpty: false,
+  }
 }
 
-export const getFocusedItemIndex = () => 0;
+export { prepareWealthWidgetData };

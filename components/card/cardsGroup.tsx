@@ -24,9 +24,11 @@ function CardGroup({
     <View style={styles.group}>
       <View style={styles.titleContainer}>
         <Text style={styles.titile}>{title}</Text>
-        <View style={styles.summaryContainer}>
-          <Text style={styles.summary}>= {formatAmountStr(summary)}</Text>
-        </View>
+        {Boolean(summary) && (
+          <View style={styles.summaryContainer}>
+            <Text style={styles.summary}>= {formatAmountStr(summary)}</Text>
+          </View>)
+        }
       </View>
       <View style={styles.innerContainer}>
         {children}

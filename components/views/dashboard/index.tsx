@@ -8,6 +8,12 @@ import {
 import {
   TransactionChart,
 } from '@/components/chart/transactionChart/transactionChart';
+import {
+  LastTransactionsWidget,
+} from '@/components/widgets/lastTransactionsWidget/lastTransactionsWidget';
+import {
+  WealthWidget,
+} from '@/components/widgets/wealthWidget/WealthWidget';
 
 
 export default function DashboardView(): React.JSX.Element {
@@ -18,7 +24,9 @@ export default function DashboardView(): React.JSX.Element {
           Главная
         </Text>
       </View>
+      <WealthWidget />
       <TransactionChart />
+      <LastTransactionsWidget />
     </View>
   );
 }

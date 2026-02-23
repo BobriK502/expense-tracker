@@ -1,4 +1,7 @@
-import { I18n } from "i18n-js";
+import {
+  I18n,
+  type TranslateOptions,
+} from "i18n-js";
 import { getLocales } from 'expo-localization';
 
 import { ru } from "./dictionaries/ru";
@@ -12,6 +15,6 @@ const i18n = new I18n({
 i18n.locale = getLocales()[0].languageCode ?? "ru";
 i18n.enableFallback = true;
 
-export const getText = (term: string): string => {
-  return i18n.t(term);
+export const getText = (term: string, options: TranslateOptions = {}): string => {
+  return i18n.t(term, options);
 }

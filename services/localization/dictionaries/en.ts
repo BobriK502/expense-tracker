@@ -31,5 +31,10 @@ export const en = {
   "description_placeholder": "Fill the description",
   "title_placeholder": "New record",
   "amount_input_label": "Amount",
-  "amount_input_placeholder": "Enter amount"
+  "amount_input_placeholder": "Enter amount",
+  "wealth_widget_info_no_transactions": "There no any transaction logged",
+  "wealth_widget_info_transactions_count": "Count of transactions - {{transactionCount}}",
+  "wealth_widget_expence_label": "Expences",
+  "wealth_widget_income_label": "Income",
+  "wealth_widget_balance_label": "Current balance",
 };

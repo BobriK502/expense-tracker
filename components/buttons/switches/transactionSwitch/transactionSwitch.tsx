@@ -19,6 +19,13 @@ import {
 } from '@expo/vector-icons';
 
 import {
+  Colors,
+} from '@/constants/Colors';
+import {
+  useColorScheme,
+} from '@/hooks/useColorScheme';
+
+import {
   type TransactionType,
   type TransactionId,
 } from '@/types/ui/transaction/transactionType';
@@ -35,6 +42,8 @@ function TransactionSwitch({
   values,
 }: TransactionSwitchProps): React.JSX.Element {
   const optionBinVal = useSharedValue(0);
+  const colorScheme = useColorScheme();
+  const slectedColorScheme = Colors[colorScheme ?? 'light'];
 
   const handlePress = () => {
     const opositeOption = values.find((v) => v.id !== selectedValue)!;
@@ -67,7 +76,10 @@ function TransactionSwitch({
     const color = interpolateColor(
       optionBinVal.value,
       [0, 1],
-      ['#fecdd3', '#d9f99d']
+      [
+        slectedColorScheme.transaction[TRANSACTION_TYPE_IDS.EXPENCE],
+        slectedColorScheme.transaction[TRANSACTION_TYPE_IDS.INCOME],
+      ],
     );
 
     return {
@@ -92,6 +104,7 @@ function TransactionSwitch({
           width: 25,
           borderRadius: '50%',
           position: 'relative',
+          opacity: 0.8,
         }
       ]}>
         <Animated.View style={{
@@ -102,7 +115,7 @@ function TransactionSwitch({
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-          <FontAwesome6 name='sort-down' color={'gray'} size={14} />
+          <FontAwesome6 name='sort-down' color={'white'} size={14} />
         </Animated.View>
       </Animated.View>
     </Pressable>

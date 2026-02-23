@@ -1,8 +1,7 @@
 import { openDatabaseSync } from 'expo-sqlite';
 
 import { dbName } from '@/db/index';
-
-import type { Transaction } from '@/types/entities/transaction';
+import { type Transaction } from '@/types/entities/transaction';
 
 export async function createExpence({
   title,
@@ -71,6 +70,7 @@ export async function create({
 
 export async function getTransactionsByMonth(
   date: Date,
+  limit: number,
 ): Promise<Array<Transaction>>{
   const db = openDatabaseSync(dbName);
   const year = date.getFullYear();
@@ -93,8 +93,10 @@ export async function getTransactionsByMonth(
       FROM transactions AS t
       LEFT JOIN categories AS c ON c.id = t.categoryId
       WHERE strftime('%Y-%m', t.transactionDate) = ?
-      ORDER BY t.transactionDate DESC`,
-      [yearMonth]
+      ORDER BY t.transactionDate DESC
+      LIMIT ?
+      `,
+      [yearMonth, limit]
     );
 
     return transactions;
@@ -150,5 +152,24 @@ export async function getTransacrionsByType(
   } catch (e) {
     console.log(e)
     return [];
+  }
+}
+
+export async function getAllTransactionsAmount() {
+  const db = openDatabaseSync(dbName);
+
+  try {
+    const res = db.getAllAsync(`
+      SELECT
+        SUM(CASE WHEN transactionTypeId = 1 THEN amount ELSE 0 END) as expencesAmount,
+        SUM(CASE WHEN transactionTypeId = 2 THEN amount ELSE 0 END) as incomeAmount,
+        COUNT() as count
+      FROM
+        transactions
+    `);
+
+    return res;
+  } catch (e) {
+    console.log(e);
   }
 }
