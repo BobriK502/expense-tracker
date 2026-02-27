@@ -16,7 +16,7 @@ import {
   BarStack,
 } from './BarStack';
 
-const width = Dimensions.get('window').width * 0.92;
+const width = Dimensions.get('window').width * 0.9;
 
 export type WealthChartItem = {
   name: string;
@@ -37,11 +37,11 @@ function WealthChart({
 
   return (
     <View style={WealthChartStyles.contnainer} >
-      <Canvas style={{ height: 45, width, backgroundColor: 'white'}}>
+      <Canvas style={{ height: 45, width, backgroundColor: 'white',}}>
         <Group>
           {items.map((item, index) => {
-            const widthVal = Math.ceil((Math.max(item.value, 0) / total) * (width - (8 * items.length - 2)));
-            const offset = index === 0 ? 0 : prW.current + index * 4;
+            const widthVal = Math.ceil((Math.max(item.value, 0) / total) * (width - (6 * (items.length + 1))));
+            const offset = index === 0 ? 6 : prW.current + ((index + 1) * 6);
             prW.current = index === items.length - 1 ? 0 : widthVal + prW.current;
 
             return <BarStack color={item.color} val={widthVal} offset={offset} />;

@@ -8,6 +8,13 @@ import {
   Colors,
 } from '@/constants/Colors';
 
+type BalanceData = {
+  info: string;
+  isEmpty: boolean;
+  value: number;
+  diffPercentage: number;
+};
+
 async function prepareWealthWidgetData() {
   const amountData = await getTransactionsAmount();
 
@@ -47,4 +54,28 @@ async function prepareWealthWidgetData() {
   }
 }
 
-export { prepareWealthWidgetData };
+async function prepareCurrentBalanceData(): Promise<BalanceData> {
+  const amountData = await getTransactionsAmount();
+
+  if (!amountData.count) {
+    return {
+      info: getText('wealth_widget_info_no_transactions'),
+      isEmpty: true,
+      value: 0,
+      diffPercentage: 0,
+    }
+  }
+
+  return {
+    isEmpty: false,
+    value: amountData.incomeAmount - amountData.expencesAmount,
+    info: getText('balance_widget_title'),
+    diffPercentage: 32,
+  }
+}
+
+export {
+  prepareWealthWidgetData,
+  prepareCurrentBalanceData,
+  BalanceData,
+};

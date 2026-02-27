@@ -12,9 +12,8 @@ import {
   LastTransactionsWidget,
 } from '@/components/widgets/lastTransactionsWidget/lastTransactionsWidget';
 import {
-  WealthWidget,
-} from '@/components/widgets/wealthWidget/WealthWidget';
-
+  BalanceWidget,
+} from '@/components/widgets/BalanceWidget/BalanceWidget';
 
 export default function DashboardView(): React.JSX.Element {
   return (
@@ -24,7 +23,7 @@ export default function DashboardView(): React.JSX.Element {
           Главная
         </Text>
       </View>
-      <WealthWidget />
+      <BalanceWidget />
       <TransactionChart />
       <LastTransactionsWidget />
     </View>

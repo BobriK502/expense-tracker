@@ -2,9 +2,9 @@ import React from 'react';
 import {
   View,
   Text,
-  Pressable,
   StyleSheet,
 } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 
 import {
   numButtons,
@@ -16,7 +16,9 @@ import {
   numButtonTypes,
   NumPadSymbol,
 } from '@/components/numPad/types';
-import { Feather } from '@expo/vector-icons';
+import {
+  Colors,
+} from '@/constants/Colors';
 
 interface NumPadProps {
   onAddSymbol: (symbol: NumPadSymbol) => void;
@@ -58,21 +60,21 @@ function NumPad({
         <NumButton
           onPress={onRemoveSymbol}
           size='default'
-          customStyle={{ backgroundColor: '#FFE4E5' }}
+          customStyle={{ backgroundColor: Colors.unthemed.accents.rose }}
         >
           <Feather name="delete" size={24} color='black' />
         </NumButton>
         <NumButton
           onPress={onClear}
           size='default'
-          customStyle={{ backgroundColor: '#DFE7FF' }}
+          customStyle={{ backgroundColor: Colors.unthemed.accents.blue }}
         >
           <Text style={{ fontSize: 22 }}>AC</Text>
         </NumButton>
         <NumButton
           onPress={onSubmit}
           size='big'
-          customStyle={{ backgroundColor: '#ECFCCA' }}
+          customStyle={{ backgroundColor: Colors.unthemed.accents.green }}
         >
           <Feather name="check" size={24} color='black' />
         </NumButton>

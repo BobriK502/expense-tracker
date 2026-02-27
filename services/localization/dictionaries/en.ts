@@ -37,4 +37,7 @@ export const en = {
   "wealth_widget_expence_label": "Expences",
   "wealth_widget_income_label": "Income",
   "wealth_widget_balance_label": "Current balance",
+  "balance_widget_title": "Current balance",
+  "balance_widget_action_button_label": "View more",
+  "balance_widget_info_label": "last month",
 };

@@ -19,7 +19,7 @@ function BarStack({
       const path = Skia.Path.Make();
       
       path.addRRect({
-        rect: { x: offset + 10, y: 10, width: val, height: 20 },
+        rect: { x: offset, y: 10, width: val, height: 20 },
         rx: r,
         ry: r,
       })

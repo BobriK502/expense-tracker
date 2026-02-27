@@ -56,9 +56,10 @@ function WealthWidget() {
 const WealthWidgetStyles = StyleSheet.create({
   container: {
     display: 'flex',
-    width: '92%',
-    marginHorizontal: '4%',
+    width: '96%',
+    marginHorizontal: '2%',
     marginVertical: '10%',
+    padding: 15,
   },
   infoContainer: {
     flexDirection: 'row',

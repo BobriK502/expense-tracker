@@ -37,4 +37,7 @@ export const ru = {
   "wealth_widget_expence_label": "Затраты",
   "wealth_widget_income_label": "Доход",
   "wealth_widget_balance_label": "Текущий баланс",
+  "balance_widget_title": "Текущий баланс",
+  "balance_widget_action_button_label": "Подробнее",
+  "balance_widget_info_label": "c последнего месяца",
 };

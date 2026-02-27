@@ -34,14 +34,13 @@ const WealthInfoItemStyles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     marginVertical: 4,
-    paddingLeft: 10,
   },
   labelContainer: {
     width: '60%',
   },
   label: {
     fontSize: 15,
-    fontWeight: 500,
+    fontWeight: 400,
   },
   amountValueContainer: {
     width: '40%',
@@ -49,6 +48,8 @@ const WealthInfoItemStyles = StyleSheet.create({
   },
   amountValue: {
     fontSize: 16,
+    color: 'gray',
+    fontWeight: 500,
   }
 });
 

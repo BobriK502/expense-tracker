@@ -8,6 +8,7 @@ export const Colors = {
   light: {
     text: '#11181C',
     background: 'white',
+    backgroundAccent: '#FAFBFC',
     tint: tintColorLight,
     icon: '#687076',
     tabIconDefault: '#94a3b8',
@@ -15,8 +16,8 @@ export const Colors = {
     btnPrimaryColor: '#F4F4F5',
     accentColor: '#fff085',
     transaction: {
-      [TRANSACTION_TYPE_IDS.EXPENCE]: '#C10008',
-      [TRANSACTION_TYPE_IDS.INCOME]: 'green',
+      [TRANSACTION_TYPE_IDS.EXPENCE]: '#DF2638',
+      [TRANSACTION_TYPE_IDS.INCOME]: '#1BAB68',
     },
     entities: {
       [entityTypes.expence]: '#fecdd3',
@@ -27,6 +28,7 @@ export const Colors = {
   dark: {
     text: '#ECEDEE',
     background: '#151718',
+    backgroundAccent: '#94a3b8',
     tint: tintColorDark,
     icon: '#9BA1A6',
     tabIconDefault: '#94a3b8',
@@ -34,8 +36,8 @@ export const Colors = {
     btnPrimaryColor: '#fff085',
     accentColor: '#fff085',
     transaction: {
-      [TRANSACTION_TYPE_IDS.EXPENCE]: '#C10008',
-      [TRANSACTION_TYPE_IDS.INCOME]: 'green',
+      [TRANSACTION_TYPE_IDS.EXPENCE]: '#DF2638',
+      [TRANSACTION_TYPE_IDS.INCOME]: '#1BAB68',
     },
     entities: {
       [entityTypes.expence]: '#fecdd3',
@@ -45,9 +47,21 @@ export const Colors = {
   },
   unthemed: {
     wealthEntitites: {
-      expence: '#C10008',
-      income: '#008000',
+      expence: '#DF2638',
+      income: '#1BAB68',
       balance: '#dbdbdb',
+    },
+    accents: {
+      yellow: '#FFFACD',
+      rose: '#FFE4E5',
+      green: '#ECFCCA',
+      blue: '#DFE7FF',
+      gray: '#F4F4F5',
+      orange: '#FFE3B8'
+    },
+    trending: {
+      up: '#1BAB68',
+      down: '#DF2638',
     }
   }
 };
