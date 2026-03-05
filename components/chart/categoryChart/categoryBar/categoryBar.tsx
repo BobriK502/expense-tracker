@@ -24,10 +24,10 @@ function CategoryBar({
   progress,
   label,
 }) {
-  const size = 60;
+  const size = 90;
   const offset = 10;
   const initialOffset = 10;
-  const r = size * 0.2;
+  const r = size * 0.1;
   const basicOffset = index === 0 ? initialOffset : offset;
 
   const fontFamily = Platform.select({ ios: "Helvetica", default: "serif" });

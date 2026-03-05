@@ -50,7 +50,7 @@ function LastTransactionsWidget() {
   useEffect(() => {
     getTransactionsDataByMonth(
       period,
-      10,
+      5,
     ).then((data) => {
       setTransactionData({
         data: formatPeriodData(data.transactions, period),
@@ -77,7 +77,7 @@ function LastTransactionsWidget() {
             {transactionData.data.map((item, ind) => {
               return (
                 <CardGroup title={item.header} key={item.header}>
-                  {item.data.sort((f, s) => {
+                  {(item.data ?? []).sort((f, s) => {
                     try {
                       return new Date(s.transactionDate) - new Date(f.transactionDate);
                     } catch (e) {
@@ -99,11 +99,10 @@ function LastTransactionsWidget() {
               router.push('/transactions');
             }}
           >
-            <View
-              style={LastTransactionsWidgetStyles.viewAll}
-            >
+            <View style={LastTransactionsWidgetStyles.viewAll}>
+              <Feather name='arrow-right-circle' size={16} color='white' />
+              <View style={LastTransactionsWidgetStyles.viewAllSeparator} />
               <Text style={LastTransactionsWidgetStyles.viewAllLabel} >Все транзакции</Text>
-              <Feather name='arrow-right-circle' size={16} color='black' />
             </View>
           </Pressable>
         )
@@ -130,16 +129,24 @@ const LastTransactionsWidgetStyles = StyleSheet.create({
     width: '96%',
   },
   viewAll: {
-    marginTop: 10,
-    backgroundColor: 'lightgray',
-    paddingHorizontal: 25,
-    paddingVertical: 8,
+    marginTop: 25,
+    backgroundColor: '#252525',
+    paddingLeft: 15,
+    paddingRight: 25,
     flexDirection: 'row',
     borderRadius: 10,
     alignItems: 'center',
   },
+  viewAllSeparator: {
+    height: '100%',
+    width: 2,
+    marginHorizontal: 10,
+    backgroundColor: 'white',
+  },
   viewAllLabel: {
-    marginRight: 10,
+    paddingVertical: 6,
+    marginLeft: 5,
+    color: 'white',
   }
 })
 

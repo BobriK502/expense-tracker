@@ -32,7 +32,6 @@ const {
 import {
   CategoryBar,
 } from '@/components/chart/categoryChart/categoryBar/categoryBar';
-import { hexWithOpacity } from '@/helpers/color/hexOpacity';
 
 function CategoryChart({
   data,
@@ -43,7 +42,7 @@ function CategoryChart({
 
   const dataClickableX = data.map((_, index) => {
     return {
-      test: (val) => val > 10 + (index * (60)) && val < 10 + (index * (60 + 10)) + 60,
+      test: (val) => val > 10 + (index * (100)) && val < 10 + (index * (100 + 10)) + 100,
       index,
     };
   })
@@ -51,14 +50,14 @@ function CategoryChart({
   const panGesture = Gesture.Pan()
     .activeOffsetX([-10, 10])
     .onChange((event) => {
-      const visibleItems = Math.ceil(width / 70);
+      const visibleItems = Math.ceil(width / 110);
 
       if (data.length < visibleItems) return;
 
       let newVal = xOffset.value + event.changeX;
 
       newVal = Math.min(0, newVal);
-      newVal = Math.max(((data.length - visibleItems) * -70) - 20, newVal)
+      newVal = Math.max(((data.length - visibleItems) * -110) - 90, newVal)
       xOffset.value = newVal;
     });
   
